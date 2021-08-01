@@ -6,8 +6,38 @@ SparkConf()
 SparkContext --- Conecction to the cluster
 SparkSession --- Interface with that connection
 
-# Using DataFrames
-Spark's core data structure is the Resilient Distributed Dataset (RDD) 
+# Using RDD's or DataFrames
+Spark's core data structure is the Resilient Distributed Dataset (RDD)  
+Resilient: Ability to withstand failures.
+Distributed: Spanning across multiple machines.
+Datasets: Collection of partitioed data.
+sc.parallelize().
+sc.textFile().
+
+RDD transformations:
+map()
+filter()
+flatMap()
+union()
+
+RDD actions:
+collect(): returns all the elements of the dataset.
+take(): returns an array with the certainly number of elements.
+first(): prints the first element of the RDD. 
+count(): returns the number of elements of the RDD.
+reduce(): is used for aggregating the elements of a regular RDD.
+saveAsTextFile(): saves an RDD into a text file with each partition as 
+a separate file.
+coalesce(): saves an RDD as a single text file.
+
+Pair RDDS:
+reduceByKey(): Combine values with the same key.
+groupByKey(): Group values with the samen key.
+sortByKey(): Return and RDD sorted by key.
+join():Join two pair RDDs based on their key.
+countByKey(): 
+collectAsMap(): returns hte key-value pairs in the RDD as dictionary.
+
 DataFrames are more optimized for complicated operations than RDD's.
 The Spark DataFrame is inmutable.
 
