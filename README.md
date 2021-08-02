@@ -3,14 +3,15 @@ The first step to using Spark is connecting to a cluster.
 To create one connection we should create an instance of the SparkContext (sc) class.
 SparkConf()
 
-SparkContext --- Conecction to the cluster
+SparkContext --- Connection to the cluster
 SparkSession --- Interface with that connection
 
 # Using RDD's or DataFrames
-Spark's core data structure is the Resilient Distributed Dataset (RDD)  
+
+.,Spark's core data structure is the Resilient Distributed Dataset (RDD)  
 Resilient: Ability to withstand failures.
 Distributed: Spanning across multiple machines.
-Datasets: Collection of partitioed data.
+Datasets: Collection of partitioned data.
 sc.parallelize().
 sc.textFile().
 
@@ -39,13 +40,47 @@ countByKey():
 collectAsMap(): returns hte key-value pairs in the RDD as dictionary.
 
 DataFrames are more optimized for complicated operations than RDD's.
-The Spark DataFrame is inmutable.
-
+PySpark DataFrame is an inmutable distributed collection of data with named columns.
+Designed for processing both structured and semi-structured data (JSON)
 To start working with Spark DataFrames we have to create a SparkSession object
 from our Spark Context.
 
 Generally the SparkSesion is called spark.
 SparkSession.builder.getOrCreate().
+SparkSession is used to create DataFrame, register DataFrames and execute SQL queries.
+
+Usual chunks:
+spark.createDataFrame()
+spark.read.csv()
+spark.read.json()
+spark.read.parquet()
+spark.sql
+
+
+DataFrame Transformations:
+select()
+filter()
+groupby()
+orderby()
+dropDuplicates()
+withXColumn()
+withColumnRenamed()
+
+
+DataFrame Actions:
+printSchema()
+head()
+show()
+count()
+describe()
+.columns
+filter()
+
+
+# Executing SQL Queries
+The SparkSession sql() method executes SQL Query.
+df.createdOrReplaceTempView()
+spark.sql('Expression')
 
 # Machine Learning Pipelines
 
