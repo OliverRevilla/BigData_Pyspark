@@ -8,6 +8,8 @@ SparkSession --- Interface with that connection
 
 # Using RDD's or DataFrames
 
+## RDD's 
+
 .,Spark's core data structure is the Resilient Distributed Dataset (RDD)  
 Resilient: Ability to withstand failures.
 Distributed: Spanning across multiple machines.
@@ -39,6 +41,8 @@ join():Join two pair RDDs based on their key.
 countByKey(): 
 collectAsMap(): returns hte key-value pairs in the RDD as dictionary.
 
+## DataFrames
+
 DataFrames are more optimized for complicated operations than RDD's.
 PySpark DataFrame is an inmutable distributed collection of data with named columns.
 Designed for processing both structured and semi-structured data (JSON)
@@ -56,14 +60,13 @@ spark.read.json()
 spark.read.parquet()
 spark.sql
 
-
 DataFrame Transformations:
 select()
 filter()
 groupby()
 orderby()
 dropDuplicates()
-withXColumn()
+withColumn()
 withColumnRenamed()
 
 
@@ -77,10 +80,24 @@ describe()
 filter()
 
 
-# Executing SQL Queries
+## Executing SQL Queries
 The SparkSession sql() method executes SQL Query.
 df.createdOrReplaceTempView()
 spark.sql('Expression')
+## Visually Data
+df.cov('col1','col2'), df.corr('col1','col2')
+df.sample(False, 0.1,42).count()
+df.sample(False, 0.2, 147).toPandas()
+## Dropping data or missing values
+df.drop(['col1','col2',...])
+df.dropna(how = 'all', subset = ['col1','col2'...])
+df.dropDuplicates(['col1])
+## Assessing to missing values
+df['col1'].isNull().count()
+## Time features
+from pyspark.sql.functions import to_date, year_month,dayofmonth,weekofyear,datediff,lag,window
+
+
 
 # Machine Learning Pipelines
 
